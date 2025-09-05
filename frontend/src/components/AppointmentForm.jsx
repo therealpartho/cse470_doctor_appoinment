@@ -1,11 +1,6 @@
 import axios from "axios";
-<<<<<<< HEAD
 import React, { useEffect } from "react";
 import { useState } from "react";
-=======
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
->>>>>>> 196efa6 (feat: latest UI updates)
 import { toast } from "react-toastify";
 
 const AppointmentForm = () => {
@@ -35,7 +30,6 @@ const AppointmentForm = () => {
     "ENT",
   ];
 
-<<<<<<< HEAD
   const [doctors, setDoctors] = useState([]);
   useEffect(() => {
     const fetchDoctors = async () => {
@@ -50,50 +44,6 @@ const AppointmentForm = () => {
   }, []);
   const handleAppointment = async (e) => {
     e.preventDefault();
-=======
-  const navigateTo = useNavigate();
-  const [doctors, setDoctors] = useState([]);
-
-  useEffect(() => {
-    const fetchDoctors = async () => {
-      try {
-        const { data } = await axios.get(
-          "http://localhost:4000/api/v1/user/doctors",
-          { withCredentials: true }
-        );
-        setDoctors(data.doctors);
-        console.log(data.doctors);
-      } catch (error) {
-        console.error("Error fetching doctors:", error);
-        toast.error("Failed to load doctors. Please try again.");
-      }
-    };
-    fetchDoctors();
-  }, []);
-
-  const handleAppointment = async (e) => {
-    e.preventDefault();
-
-    // Validation: Check if all required fields are filled
-    if (
-      !firstName ||
-      !lastName ||
-      !email ||
-      !phone ||
-      !nic ||
-      !dob ||
-      !gender ||
-      !appointmentDate ||
-      !department ||
-      !doctorFirstName ||
-      !doctorLastName ||
-      !address
-    ) {
-      toast.error("Please fill the full form");
-      return; // Stop submission if any field is empty
-    }
-
->>>>>>> 196efa6 (feat: latest UI updates)
     try {
       const hasVisitedBool = Boolean(hasVisited);
       const { data } = await axios.post(
@@ -119,7 +69,6 @@ const AppointmentForm = () => {
         }
       );
       toast.success(data.message);
-<<<<<<< HEAD
       setFirstName(""),
         setLastName(""),
         setEmail(""),
@@ -135,31 +84,6 @@ const AppointmentForm = () => {
         setAddress("");
     } catch (error) {
       toast.error(error.response.data.message);
-=======
-      navigateTo("/");
-
-      // Reset states
-      setFirstName("");
-      setLastName("");
-      setEmail("");
-      setPhone("");
-      setNic("");
-      setDob("");
-      setGender("");
-      setAppointmentDate("");
-      setDepartment("Pediatrics");
-      setDoctorFirstName("");
-      setDoctorLastName("");
-      setAddress("");
-      setHasVisited(false);
-    } catch (error) {
-      if (error.response) {
-        toast.error(error.response.data.message || "An error occurred");
-      } else {
-        toast.error("Network error. Please check your connection or server.");
-      }
-      console.error("Submission error:", error);
->>>>>>> 196efa6 (feat: latest UI updates)
     }
   };
 
@@ -203,23 +127,12 @@ const AppointmentForm = () => {
               value={nic}
               onChange={(e) => setNic(e.target.value)}
             />
-<<<<<<< HEAD
             <input
               type="date"
               placeholder="Date of Birth"
               value={dob}
               onChange={(e) => setDob(e.target.value)}
             />
-=======
-            <div className="date-input-wrapper">
-              <label>Date of Birth</label>
-              <input
-                type="date"
-                value={dob}
-                onChange={(e) => setDob(e.target.value)}
-              />
-            </div>
->>>>>>> 196efa6 (feat: latest UI updates)
           </div>
           <div>
             <select value={gender} onChange={(e) => setGender(e.target.value)}>
@@ -227,23 +140,12 @@ const AppointmentForm = () => {
               <option value="Male">Male</option>
               <option value="Female">Female</option>
             </select>
-<<<<<<< HEAD
             <input
               type="date"
               placeholder="Appointment Date"
               value={appointmentDate}
               onChange={(e) => setAppointmentDate(e.target.value)}
             />
-=======
-            <div className="date-input-wrapper">
-              <label>Appointment Date</label>
-              <input
-                type="date"
-                value={appointmentDate}
-                onChange={(e) => setAppointmentDate(e.target.value)}
-              />
-            </div>
->>>>>>> 196efa6 (feat: latest UI updates)
           </div>
           <div>
             <select
@@ -254,7 +156,6 @@ const AppointmentForm = () => {
                 setDoctorLastName("");
               }}
             >
-<<<<<<< HEAD
               {departmentsArray.map((depart, index) => {
                 return (
                   <option value={depart} key={index}>
@@ -284,14 +185,6 @@ const AppointmentForm = () => {
                   </option>
                 ))}
             </select> */}
-=======
-              {departmentsArray.map((depart, index) => (
-                <option value={depart} key={index}>
-                  {depart}
-                </option>
-              ))}
-            </select>
->>>>>>> 196efa6 (feat: latest UI updates)
             <select
               value={JSON.stringify({
                 firstName: doctorFirstName,
@@ -341,13 +234,7 @@ const AppointmentForm = () => {
               style={{ flex: "none", width: "25px" }}
             />
           </div>
-<<<<<<< HEAD
           <button style={{ margin: "0 auto" }}>GET APPOINTMENT</button>
-=======
-          <button style={{ margin: "0 auto" }} type="submit">
-            GET APPOINTMENT
-          </button>
->>>>>>> 196efa6 (feat: latest UI updates)
         </form>
       </div>
     </>
